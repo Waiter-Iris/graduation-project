@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.rent.mapper.FindHouseMapper" >
+  <resultMap id="BaseResultMap" type="com.dream.rent.pojo.FindHouse" >
+    <id column="findhouse_id" property="findhouseId" jdbcType="INTEGER" />
+    <result column="findhouse_price" property="findhousePrice" jdbcType="DOUBLE" />
+    <result column="findhouse_region" property="findhouseRegion" jdbcType="VARCHAR" />
+    <result column="findhouse_housetype" property="findhouseHousetype" jdbcType="VARCHAR" />
+    <result column="findhouse_area" property="findhouseArea" jdbcType="DOUBLE" />
+    <result column="findhouse_createdate" property="findhouseCreatedate" jdbcType="TIMESTAMP" />
+    <result column="findhouse_senddate" property="findhouseSenddate" jdbcType="TIMESTAMP" />
+    <result column="findhouse_status" property="findhouseStatus" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    findhouse_id, findhouse_price, findhouse_region, findhouse_housetype, findhouse_area, 
+    findhouse_createdate, findhouse_senddate, findhouse_status, user_id
+  </sql>
+  
+  <select id="selectByHouseArea" resultMap="BaseResultMap" parameterType="java.lang.Double">
+  select
+  		<include refid="Base_Column_List" />
+  		from findhouse
+  		where findhouse_area=#{fh}
+  </select>
+  
+  <select id="selectByHouseType" resultMap="BaseResultMap" parameterType="com.dream.rent.pojo.FindHouse" >
+  	select
+  		<include refid="Base_Column_List" />
+  		from findhouse
+  		where findhouse_housetype=#{findhouseHousetype}
+  </select>
+  
+  <select id="selectByGegion" resultMap="BaseResultMap" parameterType="com.dream.rent.pojo.FindHouse" >
+  		select
+  		<include refid="Base_Column_List" />
+  		from findhouse
+  		where findhouse_region=#{findhouseRegion}
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from findhouse
+    where findhouse_id = #{findhouseId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from findhouse
+    where findhouse_id = #{findhouseId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dream.rent.pojo.FindHouse" >
+    insert into findhouse (findhouse_id, findhouse_price, findhouse_region, 
+      findhouse_housetype, findhouse_area, findhouse_createdate, 
+      findhouse_senddate, findhouse_status, user_id
+      )
+    values (#{findhouseId,jdbcType=INTEGER}, #{findhousePrice,jdbcType=DOUBLE}, #{findhouseRegion,jdbcType=VARCHAR}, 
+      #{findhouseHousetype,jdbcType=VARCHAR}, #{findhouseArea,jdbcType=DOUBLE}, #{findhouseCreatedate,jdbcType=TIMESTAMP}, 
+      #{findhouseSenddate,jdbcType=TIMESTAMP}, #{findhouseStatus,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dream.rent.pojo.FindHouse" >
+    insert into findhouse
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="findhouseId != null" >
+        findhouse_id,
+      </if>
+      <if test="findhousePrice != null" >
+        findhouse_price,
+      </if>
+      <if test="findhouseRegion != null" >
+        findhouse_region,
+      </if>
+      <if test="findhouseHousetype != null" >
+        findhouse_housetype,
+      </if>
+      <if test="findhouseArea != null" >
+        findhouse_area,
+      </if>
+      <if test="findhouseCreatedate != null" >
+        findhouse_createdate,
+      </if>
+      <if test="findhouseSenddate != null" >
+        findhouse_senddate,
+      </if>
+      <if test="findhouseStatus != null" >
+        findhouse_status,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="findhouseId != null" >
+        #{findhouseId,jdbcType=INTEGER},
+      </if>
+      <if test="findhousePrice != null" >
+        #{findhousePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="findhouseRegion != null" >
+        #{findhouseRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="findhouseHousetype != null" >
+        #{findhouseHousetype,jdbcType=VARCHAR},
+      </if>
+      <if test="findhouseArea != null" >
+        #{findhouseArea,jdbcType=DOUBLE},
+      </if>
+      <if test="findhouseCreatedate != null" >
+        #{findhouseCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="findhouseSenddate != null" >
+        #{findhouseSenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="findhouseStatus != null" >
+        #{findhouseStatus,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dream.rent.pojo.FindHouse" >
+    update findhouse
+    <set >
+      <if test="findhousePrice != null" >
+        findhouse_price = #{findhousePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="findhouseRegion != null" >
+        findhouse_region = #{findhouseRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="findhouseHousetype != null" >
+        findhouse_housetype = #{findhouseHousetype,jdbcType=VARCHAR},
+      </if>
+      <if test="findhouseArea != null" >
+        findhouse_area = #{findhouseArea,jdbcType=DOUBLE},
+      </if>
+      <if test="findhouseCreatedate != null" >
+        findhouse_createdate = #{findhouseCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="findhouseSenddate != null" >
+        findhouse_senddate = #{findhouseSenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="findhouseStatus != null" >
+        findhouse_status = #{findhouseStatus,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where findhouse_id = #{findhouseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dream.rent.pojo.FindHouse" >
+    update findhouse
+    set findhouse_price = #{findhousePrice,jdbcType=DOUBLE},
+      findhouse_region = #{findhouseRegion,jdbcType=VARCHAR},
+      findhouse_housetype = #{findhouseHousetype,jdbcType=VARCHAR},
+      findhouse_area = #{findhouseArea,jdbcType=DOUBLE},
+      findhouse_createdate = #{findhouseCreatedate,jdbcType=TIMESTAMP},
+      findhouse_senddate = #{findhouseSenddate,jdbcType=TIMESTAMP},
+      findhouse_status = #{findhouseStatus,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER}
+    where findhouse_id = #{findhouseId,jdbcType=INTEGER}
+  </update>
+</mapper>

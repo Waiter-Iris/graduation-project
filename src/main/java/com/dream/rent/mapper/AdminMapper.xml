@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.rent.mapper.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.dream.rent.pojo.Admin" >
+    <id column="admin_id" property="adminId" jdbcType="INTEGER" />
+    <result column="admin_username" property="adminUsername" jdbcType="VARCHAR" />
+    <result column="admin_password" property="adminPassword" jdbcType="VARCHAR" /> 
+    <result column="admin_head" property="adminHead" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    admin_id, admin_username, admin_password, admin_head
+  </sql>
+  
+  
+  <resultMap id="UserMap" type="com.dream.rent.pojo.User" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
+    <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+    <result column="user_age" property="userAge" jdbcType="INTEGER" />
+    <result column="user_tel" property="userTel" jdbcType="VARCHAR" />
+    <result column="user_vip" property="userVip" jdbcType="INTEGER" />
+    <result column="user_address" property="userAddress" jdbcType="VARCHAR" />
+    <result column="user_head" property="userHead" jdbcType="INTEGER" />
+    <result column="user_registtime" property="userRegisttime" jdbcType="TIMESTAMP" />
+    <result column="user_status" property="userStatus" jdbcType="INTEGER" />
+    <result column="news_id" property="newsId" jdbcType="INTEGER" />
+    <result column="user_balance" property="userBalance" jdbcType="DOUBLE" />
+  </resultMap>
+  
+  
+  <resultMap id="BaseResultMap2" type="com.dream.rent.pojo.RentHouse" >
+    <id column="renthouse_id" property="renthouseId" jdbcType="INTEGER" />
+    <result column="renthouse_houseType" property="renthouseHousetype" jdbcType="VARCHAR" />
+    <result column="renthouse_price" property="renthousePrice" jdbcType="DOUBLE" />
+    <result column="renthouse_area" property="renthouseArea" jdbcType="DOUBLE" />
+    <result column="renthouse_region" property="renthouseRegion" jdbcType="VARCHAR" />
+    <result column="renthouse_address" property="renthouseAddress" jdbcType="VARCHAR" />
+    <result column="renthouse_createdate" property="renthouseCreatedate" jdbcType="TIMESTAMP" />
+    <result column="renthouse_senddate" property="renthouseSenddate" jdbcType="TIMESTAMP" />
+    <result column="renthouse_status" property="renthouseStatus" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="broker_id" property="brokerId" jdbcType="INTEGER" />
+    <result column="picture_id" property="pictureId" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="BaseResultMap3" type="com.dream.rent.pojo.FindHouse" >
+    <id column="findhouse_id" property="findhouseId" jdbcType="INTEGER" />
+    <result column="findhouse_price" property="findhousePrice" jdbcType="DOUBLE" />
+    <result column="findhouse_region" property="findhouseRegion" jdbcType="VARCHAR" />
+    <result column="findhouse_housetype" property="findhouseHousetype" jdbcType="VARCHAR" />
+    <result column="findhouse_area" property="findhouseArea" jdbcType="DOUBLE" />
+    <result column="findhouse_createdate" property="findhouseCreatedate" jdbcType="TIMESTAMP" />
+    <result column="findhouse_senddate" property="findhouseSenddate" jdbcType="TIMESTAMP" />
+    <result column="findhouse_status" property="findhouseStatus" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <select id="findAllUser" resultMap="UserMap">
+  	select *
+  		from user
+  </select>
+  
+  <select id="findAllRentHouse" resultMap="BaseResultMap2" parameterType="com.dream.rent.pojo.RentHouse">
+  		select *
+  			from renthouse where renthouse_id = #{renthouseId}
+  </select>
+  
+  <select id="findAllFindHouse" resultMap="BaseResultMap3" parameterType="com.dream.rent.pojo.FindHouse">
+  	select *
+  			from findhouse where findhouse_id = #{findhouseId}
+  
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from admin
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dream.rent.pojo.Admin" >
+    insert into admin (admin_id, admin_username, admin_password, 
+      admin_head)
+    values (#{adminId,jdbcType=INTEGER}, #{adminUsername,jdbcType=VARCHAR}, #{adminPassword,jdbcType=VARCHAR}, 
+      #{adminHead,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dream.rent.pojo.Admin" >
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="adminUsername != null" >
+        admin_username,
+      </if>
+      <if test="adminPassword != null" >
+        admin_password,
+      </if>
+      <if test="adminHead != null" >
+        admin_head,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adminId != null" >
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="adminUsername != null" >
+        #{adminUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPassword != null" >
+        #{adminPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="adminHead != null" >
+        #{adminHead,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dream.rent.pojo.Admin" >
+    update admin
+    <set >
+      <if test="adminUsername != null" >
+        admin_username = #{adminUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPassword != null" >
+        admin_password = #{adminPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="adminHead != null" >
+        admin_head = #{adminHead,jdbcType=INTEGER},
+      </if>
+    </set>
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dream.rent.pojo.Admin" >
+    update admin
+    set admin_username = #{adminUsername,jdbcType=VARCHAR},
+      admin_password = #{adminPassword,jdbcType=VARCHAR},
+      admin_head = #{adminHead,jdbcType=INTEGER}
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </update>
+</mapper>

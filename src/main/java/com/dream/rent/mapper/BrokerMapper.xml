@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.rent.mapper.BrokerMapper" >
+  <resultMap id="BaseResultMap" type="com.dream.rent.pojo.Broker" >
+    <id column="broker_id" property="brokerId" jdbcType="INTEGER" />
+    <result column="broker_name" property="brokerName" jdbcType="VARCHAR" />
+    <result column="broker_sex" property="brokerSex" jdbcType="VARCHAR" />
+    <result column="broker_info" property="brokerInfo" jdbcType="VARCHAR" />
+    <result column="broker_tel" property="brokerTel" jdbcType="VARCHAR" />
+    <result column="broker_email" property="brokerEmail" jdbcType="VARCHAR" />
+    <result column="broker_gegion" property="brokerGegion" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    broker_id, broker_name, broker_sex, broker_info, broker_tel, broker_email, broker_gegion
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from broker
+    where broker_id = #{brokerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from broker
+    where broker_id = #{brokerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dream.rent.pojo.Broker" >
+    insert into broker (broker_id, broker_name, broker_sex, 
+      broker_info, broker_tel, broker_email, 
+      broker_gegion)
+    values (#{brokerId,jdbcType=INTEGER}, #{brokerName,jdbcType=VARCHAR}, #{brokerSex,jdbcType=VARCHAR}, 
+      #{brokerInfo,jdbcType=VARCHAR}, #{brokerTel,jdbcType=VARCHAR}, #{brokerEmail,jdbcType=VARCHAR}, 
+      #{brokerGegion,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dream.rent.pojo.Broker" >
+    insert into broker
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="brokerId != null" >
+        broker_id,
+      </if>
+      <if test="brokerName != null" >
+        broker_name,
+      </if>
+      <if test="brokerSex != null" >
+        broker_sex,
+      </if>
+      <if test="brokerInfo != null" >
+        broker_info,
+      </if>
+      <if test="brokerTel != null" >
+        broker_tel,
+      </if>
+      <if test="brokerEmail != null" >
+        broker_email,
+      </if>
+      <if test="brokerGegion != null" >
+        broker_gegion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="brokerId != null" >
+        #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="brokerName != null" >
+        #{brokerName,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerSex != null" >
+        #{brokerSex,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerInfo != null" >
+        #{brokerInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerTel != null" >
+        #{brokerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerEmail != null" >
+        #{brokerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerGegion != null" >
+        #{brokerGegion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dream.rent.pojo.Broker" >
+    update broker
+    <set >
+      <if test="brokerName != null" >
+        broker_name = #{brokerName,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerSex != null" >
+        broker_sex = #{brokerSex,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerInfo != null" >
+        broker_info = #{brokerInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerTel != null" >
+        broker_tel = #{brokerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerEmail != null" >
+        broker_email = #{brokerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerGegion != null" >
+        broker_gegion = #{brokerGegion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where broker_id = #{brokerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dream.rent.pojo.Broker" >
+    update broker
+    set broker_name = #{brokerName,jdbcType=VARCHAR},
+      broker_sex = #{brokerSex,jdbcType=VARCHAR},
+      broker_info = #{brokerInfo,jdbcType=VARCHAR},
+      broker_tel = #{brokerTel,jdbcType=VARCHAR},
+      broker_email = #{brokerEmail,jdbcType=VARCHAR},
+      broker_gegion = #{brokerGegion,jdbcType=VARCHAR}
+    where broker_id = #{brokerId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.rent.mapper.VipMapper" >
+  <resultMap id="BaseResultMap" type="com.dream.rent.pojo.Vip" >
+    <id column="vip_id" property="vipId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="vip_registtime" property="vipRegisttime" jdbcType="TIMESTAMP" />
+    <result column="vip_status" property="vipStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    vip_id, user_id, vip_registtime, vip_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vip
+    where vip_id = #{vipId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vip
+    where vip_id = #{vipId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dream.rent.pojo.Vip" >
+    insert into vip (vip_id, user_id, vip_registtime, 
+      vip_status)
+    values (#{vipId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{vipRegisttime,jdbcType=TIMESTAMP}, 
+      #{vipStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dream.rent.pojo.Vip" >
+    insert into vip
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="vipId != null" >
+        vip_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="vipRegisttime != null" >
+        vip_registtime,
+      </if>
+      <if test="vipStatus != null" >
+        vip_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="vipId != null" >
+        #{vipId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="vipRegisttime != null" >
+        #{vipRegisttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vipStatus != null" >
+        #{vipStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dream.rent.pojo.Vip" >
+    update vip
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="vipRegisttime != null" >
+        vip_registtime = #{vipRegisttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vipStatus != null" >
+        vip_status = #{vipStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where vip_id = #{vipId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dream.rent.pojo.Vip" >
+    update vip
+    set user_id = #{userId,jdbcType=INTEGER},
+      vip_registtime = #{vipRegisttime,jdbcType=TIMESTAMP},
+      vip_status = #{vipStatus,jdbcType=INTEGER}
+    where vip_id = #{vipId,jdbcType=INTEGER}
+  </update>
+</mapper>

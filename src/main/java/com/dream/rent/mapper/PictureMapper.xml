@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.rent.mapper.PictureMapper" >
+  <resultMap id="BaseResultMap" type="com.dream.rent.pojo.Picture" >
+    <id column="picture_id" property="pictureId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="renthouse_id" property="renthouseId" jdbcType="INTEGER" />
+    <result column="picture_one" property="pictureOne" jdbcType="VARCHAR" />
+    <result column="picture_two" property="pictureTwo" jdbcType="VARCHAR" />
+    <result column="picture_three" property="pictureThree" jdbcType="VARCHAR" />
+    <result column="picture_four" property="pictureFour" jdbcType="VARCHAR" />
+    <result column="picture_five" property="pictureFive" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    picture_id, user_id, renthouse_id, picture_one, picture_two, picture_three, picture_four, 
+    picture_five
+  </sql>
+  
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from picture
+    where picture_id = #{pictureId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from picture
+    where picture_id = #{pictureId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dream.rent.pojo.Picture" >
+    insert into picture (picture_id, user_id, renthouse_id, 
+      picture_one, picture_two, picture_three, 
+      picture_four, picture_five)
+    values (#{pictureId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{renthouseId,jdbcType=INTEGER}, 
+      #{pictureOne,jdbcType=VARCHAR}, #{pictureTwo,jdbcType=VARCHAR}, #{pictureThree,jdbcType=VARCHAR}, 
+      #{pictureFour,jdbcType=VARCHAR}, #{pictureFive,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dream.rent.pojo.Picture" >
+    insert into picture
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pictureId != null" >
+        picture_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="renthouseId != null" >
+        renthouse_id,
+      </if>
+      <if test="pictureOne != null" >
+        picture_one,
+      </if>
+      <if test="pictureTwo != null" >
+        picture_two,
+      </if>
+      <if test="pictureThree != null" >
+        picture_three,
+      </if>
+      <if test="pictureFour != null" >
+        picture_four,
+      </if>
+      <if test="pictureFive != null" >
+        picture_five,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pictureId != null" >
+        #{pictureId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="renthouseId != null" >
+        #{renthouseId,jdbcType=INTEGER},
+      </if>
+      <if test="pictureOne != null" >
+        #{pictureOne,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureTwo != null" >
+        #{pictureTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureThree != null" >
+        #{pictureThree,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureFour != null" >
+        #{pictureFour,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureFive != null" >
+        #{pictureFive,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dream.rent.pojo.Picture" >
+    update picture
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="renthouseId != null" >
+        renthouse_id = #{renthouseId,jdbcType=INTEGER},
+      </if>
+      <if test="pictureOne != null" >
+        picture_one = #{pictureOne,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureTwo != null" >
+        picture_two = #{pictureTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureThree != null" >
+        picture_three = #{pictureThree,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureFour != null" >
+        picture_four = #{pictureFour,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureFive != null" >
+        picture_five = #{pictureFive,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where picture_id = #{pictureId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dream.rent.pojo.Picture" >
+    update picture
+    set user_id = #{userId,jdbcType=INTEGER},
+      renthouse_id = #{renthouseId,jdbcType=INTEGER},
+      picture_one = #{pictureOne,jdbcType=VARCHAR},
+      picture_two = #{pictureTwo,jdbcType=VARCHAR},
+      picture_three = #{pictureThree,jdbcType=VARCHAR},
+      picture_four = #{pictureFour,jdbcType=VARCHAR},
+      picture_five = #{pictureFive,jdbcType=VARCHAR}
+    where picture_id = #{pictureId,jdbcType=INTEGER}
+  </update>
+</mapper>

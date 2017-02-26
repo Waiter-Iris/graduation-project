@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.rent.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.dream.rent.pojo.User" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
+    <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+    <result column="user_age" property="userAge" jdbcType="INTEGER" />
+    <result column="user_tel" property="userTel" jdbcType="VARCHAR" />
+    <result column="user_vip" property="userVip" jdbcType="INTEGER" />
+    <result column="user_address" property="userAddress" jdbcType="VARCHAR" />
+    <result column="user_head" property="userHead" jdbcType="INTEGER" />
+    <result column="user_registtime" property="userRegisttime" jdbcType="TIMESTAMP" />
+    <result column="user_status" property="userStatus" jdbcType="INTEGER" />
+    <result column="news_id" property="newsId" jdbcType="INTEGER" />
+    <result column="user_balance" property="userBalance" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_name, user_password, user_sex, user_age, user_tel, user_vip, user_address, 
+    user_head, user_registtime, user_status, news_id, user_balance
+  </sql>
+  
+<select id="findByName"  parameterType="com.dream.rent.pojo.User" resultMap="BaseResultMap">
+  		select * 
+  			from user
+  		where 
+  		 	user_name=#{userName} and user_password=#{userPassword}
+</select>
+
+<select id="userAdd" parameterType="com.dream.rent.pojo.User" resultMap="BaseResultMap">
+		insert 
+			into user
+			(user_name, user_password, 
+      		user_sex, user_age, user_tel, 
+      		user_address, user_head)
+      		values(user_name=#{userName},user_password=#{userPassword},
+      		user_sex=#{userSex},user_age=#{userAge},user_tel=#{userTel},
+      		user_address=#{userAddress},user_head=#{userHead})
+</select>
+
+<update id="updateByUserId" parameterType="com.dream.rent.pojo.User">
+		update user
+		    set user_name = #{userName,jdbcType=VARCHAR},
+		      user_password = #{userPassword,jdbcType=VARCHAR},
+		      user_sex = #{userSex,jdbcType=VARCHAR},
+		      user_age = #{userAge,jdbcType=INTEGER},
+		      user_tel = #{userTel,jdbcType=VARCHAR},
+		      user_address = #{userAddress,jdbcType=VARCHAR},
+		      user_head = #{userHead,jdbcType=INTEGER}
+		    where user_id = #{userId,jdbcType=INTEGER}
+</update>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dream.rent.pojo.User" >
+    insert into user (user_id, user_name, user_password, 
+      user_sex, user_age, user_tel, 
+      user_vip, user_address, user_head, 
+      user_registtime, user_status, news_id, 
+      user_balance)
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
+      #{userSex,jdbcType=VARCHAR}, #{userAge,jdbcType=INTEGER}, #{userTel,jdbcType=VARCHAR}, 
+      #{userVip,jdbcType=INTEGER}, #{userAddress,jdbcType=VARCHAR}, #{userHead,jdbcType=INTEGER}, 
+      #{userRegisttime,jdbcType=TIMESTAMP}, #{userStatus,jdbcType=INTEGER}, #{newsId,jdbcType=INTEGER}, 
+      #{userBalance,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dream.rent.pojo.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userPassword != null" >
+        user_password,
+      </if>
+      <if test="userSex != null" >
+        user_sex,
+      </if>
+      <if test="userAge != null" >
+        user_age,
+      </if>
+      <if test="userTel != null" >
+        user_tel,
+      </if>
+      <if test="userVip != null" >
+        user_vip,
+      </if>
+      <if test="userAddress != null" >
+        user_address,
+      </if>
+      <if test="userHead != null" >
+        user_head,
+      </if>
+      <if test="userRegisttime != null" >
+        user_registtime,
+      </if>
+      <if test="userStatus != null" >
+        user_status,
+      </if>
+      <if test="newsId != null" >
+        news_id,
+      </if>
+      <if test="userBalance != null" >
+        user_balance,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userAge != null" >
+        #{userAge,jdbcType=INTEGER},
+      </if>
+      <if test="userTel != null" >
+        #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userVip != null" >
+        #{userVip,jdbcType=INTEGER},
+      </if>
+      <if test="userAddress != null" >
+        #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userHead != null" >
+        #{userHead,jdbcType=INTEGER},
+      </if>
+      <if test="userRegisttime != null" >
+        #{userRegisttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userStatus != null" >
+        #{userStatus,jdbcType=INTEGER},
+      </if>
+      <if test="newsId != null" >
+        #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="userBalance != null" >
+        #{userBalance,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dream.rent.pojo.User" >
+    update user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        user_sex = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userAge != null" >
+        user_age = #{userAge,jdbcType=INTEGER},
+      </if>
+      <if test="userTel != null" >
+        user_tel = #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userVip != null" >
+        user_vip = #{userVip,jdbcType=INTEGER},
+      </if>
+      <if test="userAddress != null" >
+        user_address = #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userHead != null" >
+        user_head = #{userHead,jdbcType=INTEGER},
+      </if>
+      <if test="userRegisttime != null" >
+        user_registtime = #{userRegisttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userStatus != null" >
+        user_status = #{userStatus,jdbcType=INTEGER},
+      </if>
+      <if test="newsId != null" >
+        news_id = #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="userBalance != null" >
+        user_balance = #{userBalance,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dream.rent.pojo.User" >
+    update user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=VARCHAR},
+      user_age = #{userAge,jdbcType=INTEGER},
+      user_tel = #{userTel,jdbcType=VARCHAR},
+      user_vip = #{userVip,jdbcType=INTEGER},
+      user_address = #{userAddress,jdbcType=VARCHAR},
+      user_head = #{userHead,jdbcType=INTEGER},
+      user_registtime = #{userRegisttime,jdbcType=TIMESTAMP},
+      user_status = #{userStatus,jdbcType=INTEGER},
+      news_id = #{newsId,jdbcType=INTEGER},
+      user_balance = #{userBalance,jdbcType=DOUBLE}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

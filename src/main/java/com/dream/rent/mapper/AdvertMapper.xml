@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.rent.mapper.AdvertMapper" >
+  <resultMap id="BaseResultMap" type="com.dream.rent.pojo.Advert" >
+    <id column="advert_id" property="advertId" jdbcType="INTEGER" />
+    <result column="advert_createdate" property="advertCreatedate" jdbcType="TIMESTAMP" />
+    <result column="advert_update" property="advertUpdate" jdbcType="TIMESTAMP" />
+    <result column="renthouse_id" property="renthouseId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    advert_id, advert_createdate, advert_update, renthouse_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from advert
+    where advert_id = #{advertId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from advert
+    where advert_id = #{advertId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dream.rent.pojo.Advert" >
+    insert into advert (advert_id, advert_createdate, advert_update, 
+      renthouse_id)
+    values (#{advertId,jdbcType=INTEGER}, #{advertCreatedate,jdbcType=TIMESTAMP}, #{advertUpdate,jdbcType=TIMESTAMP}, 
+      #{renthouseId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dream.rent.pojo.Advert" >
+    insert into advert
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="advertId != null" >
+        advert_id,
+      </if>
+      <if test="advertCreatedate != null" >
+        advert_createdate,
+      </if>
+      <if test="advertUpdate != null" >
+        advert_update,
+      </if>
+      <if test="renthouseId != null" >
+        renthouse_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="advertId != null" >
+        #{advertId,jdbcType=INTEGER},
+      </if>
+      <if test="advertCreatedate != null" >
+        #{advertCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="advertUpdate != null" >
+        #{advertUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="renthouseId != null" >
+        #{renthouseId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dream.rent.pojo.Advert" >
+    update advert
+    <set >
+      <if test="advertCreatedate != null" >
+        advert_createdate = #{advertCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="advertUpdate != null" >
+        advert_update = #{advertUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="renthouseId != null" >
+        renthouse_id = #{renthouseId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where advert_id = #{advertId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dream.rent.pojo.Advert" >
+    update advert
+    set advert_createdate = #{advertCreatedate,jdbcType=TIMESTAMP},
+      advert_update = #{advertUpdate,jdbcType=TIMESTAMP},
+      renthouse_id = #{renthouseId,jdbcType=INTEGER}
+    where advert_id = #{advertId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.rent.mapper.RentHouseMapper" >
+  <resultMap id="BaseResultMap" type="com.dream.rent.pojo.RentHouse" >
+    <id column="renthouse_id" property="renthouseId" jdbcType="INTEGER" />
+    <result column="renthouse_houseType" property="renthouseHousetype" jdbcType="VARCHAR" />
+    <result column="renthouse_price" property="renthousePrice" jdbcType="DOUBLE" />
+    <result column="renthouse_area" property="renthouseArea" jdbcType="DOUBLE" />
+    <result column="renthouse_region" property="renthouseRegion" jdbcType="VARCHAR" />
+    <result column="renthouse_address" property="renthouseAddress" jdbcType="VARCHAR" />
+    <result column="renthouse_createdate" property="renthouseCreatedate" jdbcType="TIMESTAMP" />
+    <result column="renthouse_senddate" property="renthouseSenddate" jdbcType="TIMESTAMP" />
+    <result column="renthouse_status" property="renthouseStatus" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="broker_id" property="brokerId" jdbcType="INTEGER" />
+    <result column="picture_id" property="pictureId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    renthouse_id, renthouse_houseType, renthouse_price, renthouse_area, renthouse_region, 
+    renthouse_address, renthouse_createdate, renthouse_senddate, renthouse_status, user_id, 
+    broker_id, picture_id
+  </sql>
+  
+  <select id="selectInfo" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  	select renthouse_houseType,renthouse_price,renthouse_area,renthouse_region,renthouse_address,renthouse_createdate,renthouse_senddate
+  	from renthouse
+  	where user_id=#{id}
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from renthouse
+    where renthouse_id = #{renthouseId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from renthouse
+    where renthouse_id = #{renthouseId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dream.rent.pojo.RentHouse" >
+    insert into renthouse (renthouse_id, renthouse_houseType, 
+      renthouse_price, renthouse_area, renthouse_region, 
+      renthouse_address, renthouse_createdate, 
+      renthouse_senddate, renthouse_status, user_id, 
+      broker_id, picture_id)
+    values (#{renthouseId,jdbcType=INTEGER}, #{renthouseHousetype,jdbcType=VARCHAR}, 
+      #{renthousePrice,jdbcType=DOUBLE}, #{renthouseArea,jdbcType=DOUBLE}, #{renthouseRegion,jdbcType=VARCHAR}, 
+      #{renthouseAddress,jdbcType=VARCHAR}, #{renthouseCreatedate,jdbcType=TIMESTAMP}, 
+      #{renthouseSenddate,jdbcType=TIMESTAMP}, #{renthouseStatus,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{brokerId,jdbcType=INTEGER}, #{pictureId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dream.rent.pojo.RentHouse" >
+    insert into renthouse
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="renthouseId != null" >
+        renthouse_id,
+      </if>
+      <if test="renthouseHousetype != null" >
+        renthouse_houseType,
+      </if>
+      <if test="renthousePrice != null" >
+        renthouse_price,
+      </if>
+      <if test="renthouseArea != null" >
+        renthouse_area,
+      </if>
+      <if test="renthouseRegion != null" >
+        renthouse_region,
+      </if>
+      <if test="renthouseAddress != null" >
+        renthouse_address,
+      </if>
+      <if test="renthouseCreatedate != null" >
+        renthouse_createdate,
+      </if>
+      <if test="renthouseSenddate != null" >
+        renthouse_senddate,
+      </if>
+      <if test="renthouseStatus != null" >
+        renthouse_status,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="brokerId != null" >
+        broker_id,
+      </if>
+      <if test="pictureId != null" >
+        picture_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="renthouseId != null" >
+        #{renthouseId,jdbcType=INTEGER},
+      </if>
+      <if test="renthouseHousetype != null" >
+        #{renthouseHousetype,jdbcType=VARCHAR},
+      </if>
+      <if test="renthousePrice != null" >
+        #{renthousePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="renthouseArea != null" >
+        #{renthouseArea,jdbcType=DOUBLE},
+      </if>
+      <if test="renthouseRegion != null" >
+        #{renthouseRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="renthouseAddress != null" >
+        #{renthouseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="renthouseCreatedate != null" >
+        #{renthouseCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="renthouseSenddate != null" >
+        #{renthouseSenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="renthouseStatus != null" >
+        #{renthouseStatus,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="brokerId != null" >
+        #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="pictureId != null" >
+        #{pictureId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dream.rent.pojo.RentHouse" >
+    update renthouse
+    <set >
+      <if test="renthouseHousetype != null" >
+        renthouse_houseType = #{renthouseHousetype,jdbcType=VARCHAR},
+      </if>
+      <if test="renthousePrice != null" >
+        renthouse_price = #{renthousePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="renthouseArea != null" >
+        renthouse_area = #{renthouseArea,jdbcType=DOUBLE},
+      </if>
+      <if test="renthouseRegion != null" >
+        renthouse_region = #{renthouseRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="renthouseAddress != null" >
+        renthouse_address = #{renthouseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="renthouseCreatedate != null" >
+        renthouse_createdate = #{renthouseCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="renthouseSenddate != null" >
+        renthouse_senddate = #{renthouseSenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="renthouseStatus != null" >
+        renthouse_status = #{renthouseStatus,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="brokerId != null" >
+        broker_id = #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="pictureId != null" >
+        picture_id = #{pictureId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where renthouse_id = #{renthouseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dream.rent.pojo.RentHouse" >
+    update renthouse
+    set renthouse_houseType = #{renthouseHousetype,jdbcType=VARCHAR},
+      renthouse_price = #{renthousePrice,jdbcType=DOUBLE},
+      renthouse_area = #{renthouseArea,jdbcType=DOUBLE},
+      renthouse_region = #{renthouseRegion,jdbcType=VARCHAR},
+      renthouse_address = #{renthouseAddress,jdbcType=VARCHAR},
+      renthouse_createdate = #{renthouseCreatedate,jdbcType=TIMESTAMP},
+      renthouse_senddate = #{renthouseSenddate,jdbcType=TIMESTAMP},
+      renthouse_status = #{renthouseStatus,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      broker_id = #{brokerId,jdbcType=INTEGER},
+      picture_id = #{pictureId,jdbcType=INTEGER}
+    where renthouse_id = #{renthouseId,jdbcType=INTEGER}
+  </update>
+</mapper>
