@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 html,body{margin:0 0; padding: 0 0;}
 /*轮播样式*/
-.carousel_intro{width: 100%; height: 440px; overflow: hidden;}
+.carousel_intro{width: 1000px; height: 440px; overflow: hidden; margin: 0 auto;}
 /*首页广告轮播上的搜索框*/
 /*
 .carousel_search{width:1000px; margin-top: -140px; position: relative; margin-left: 210px;}
@@ -15,7 +15,7 @@ html,body{margin:0 0; padding: 0 0;}
 */
 /*页面内容的样式*/
 .myContainer { width: 1350px; height:1500px; float:left;}
-.myContainer .myCon_ad{width: 100%; height: 100px; background-color: #edefed; float: left;}
+.myContainer .myCon_ad{width: 100%; height: 100px; background-color: #edefed; float: left;margin: 0 auto;}
 .myContainer .myCon_ad .myCon_ad_css{margin-left:70px; width: 1200; height: 100px; float:left;}
 .myContainer .myCon_ad .myCon_ad_css .myCon_ad_per{width:300px; height: 100px; float:left;}
 .myContainer .myCon_ad .myCon_ad_css .myCon_ad_per .myCon_ad_per_top{font-family:"arial, helvetica, sans-serif"; font-size:20px; text-align:center; color: #333; margin-top:20px;}

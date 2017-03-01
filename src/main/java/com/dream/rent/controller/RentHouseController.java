@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dream.rent.pojo.FindHouse;
 import com.dream.rent.pojo.RentHouse;
+import com.dream.rent.service.BrokerService;
 import com.dream.rent.service.FindHouseService;
 import com.dream.rent.service.RentHouseService;
 
@@ -25,6 +26,9 @@ public class RentHouseController {
 
 	@Autowired
 	RentHouseService renthouseService;
+	
+	@Autowired
+	BrokerService brokerService;
 	
 	@RequestMapping("/selectInfo")
 	public  String selectInfo(int user_id,HttpServletRequest request,
@@ -48,5 +52,16 @@ public class RentHouseController {
 		return (rentHouses!=null)?"updateHouse2.jsp":"error.jsp";
 		
 	}
+	
+	@RequestMapping("/details")
+	public String showDetails(int id,HttpServletRequest request){
+		System.out.println("id="+id);
+		RentHouse rh = renthouseService.selectByPrimaryKey(id);
+		System.out.println(rh);
+		request.setAttribute("renthouse", rh);
+		return (rh!=null)?"details.jsp":"error.jsp";
+		
+	}
+	
 	
 }

@@ -19,4 +19,6 @@ public interface RentHouseService {
 	    
 	    List<RentHouse> selectInfo(int id);
 	    
+	  
+	    
 }

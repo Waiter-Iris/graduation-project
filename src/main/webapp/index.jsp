@@ -9,14 +9,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    
-    <title>房屋租赁系统的首页</title>
-    <!--
-			房屋租赁管理系统
-        	作者：胡亚男
-        	时间：2016-09-22
-        	描述：这是这个项目的首页
-        -->
+
+    <title>易居客的首页</title>
         <!-- 导入页面所需要的css样式和js特效 -->
         
 	<meta http-equiv="pragma" content="no-cache">
@@ -39,29 +33,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		});
     	});
     </script>
+     <style type="text/css">
+    li{float:left;list-style:none;}
+    a{text-decoration: none;color:gray;font-size:16px;padding-left:20px; padding-right:20px;}
+    a:hover{text-decoration:none;color:gray;font-weight:bold;}
+ 
+    
+    </style>
   </head>
   
   <body>
+  
   	<!--页面头部导航开始-->
 	<div class="header">
 		<div class="header_all">
 			<!--左边导航开始-->
 			<div class="header_l">
 				<div class="p_nav">
-					<p>客服电话：400-123-123</p>
+					
 				</div>
-				<a href="roomIndex.do">房源</a>
+				<a href="findHouse.jsp">租房</a>
+				<a href="rentHouse.jsp">出租</a>
+				<a href="findHouse.jsp">楼讯</a>
+				<a href="loading.jsp">问答</a>
 				<a href="index.jsp">首页</a>
-				<div class="p_log">
-					<p>租房网</p>
+				<div class="p_log" >
+					<p style="margin-top:-40px;">易乐居</p>
 				</div>
 			</div>
 			<!--左边导航结束-->
 			<!--左边导航开始-->
-			<div class="header_r">
+			<div class="header_r" style="float:right;width:20%;">
 				<!--用户登录注册开始-->
 				<div class="lr_did"></div>
-				<div class="login_regist">
+				<div class="login_regist" style="margin-top:18px;">
 					<c:if test="${not empty user.userName}">
 						<ul class="nav">
 							<li  class="active" class="dropdown" style="float: left">
@@ -69,15 +74,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									欢迎用户：${user.userName } <span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
-									<li><a href="getHouseByUId.do?u_id=${user.id }">个人中心</a></li>
+									<li><a href="">个人中心</a></li>
 								</ul>
 							</li>
 							<li style="float:left;"><a href="safeExit.do">安全退出</a></li>
 						</ul>
 					</c:if>
 					<c:if test="${empty user.userName}">
-					<a href="userLoginRegist.do" style="display: block; margin-top: 10px;">
-						登录/注册
+					<a href="login.jsp" style="margin-top: 10px;">
+						登录
+					</a>
+					<a href="regist.jsp" style="margin-top: 10px;">
+						注册
 					</a>
 					</c:if>
 				</div>
@@ -120,10 +128,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<!--首页广告轮播结束-->
 <!--页面内容模块开始-->
-<div class="myContainer">
+<div class="myContainer" style="width:100%">
 	<!--轮播下面的简介开始-->
 	<div class="myCon_ad">
-		<div class="myCon_ad_css">
+		<div class="myCon_ad_css" style="margin-left:320px;">
 			<div class="myCon_ad_per">
 				<div class="myCon_ad_per_top">满足一家人住宿</div>
 				<div class="myCon_ad_per_bottom">和家一样的温暖</div>
@@ -146,42 +154,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--热门短租城市开始-->
 	<div class="short_rent_hotCity">
 		<div class="srhc_title">
-			<div class="tit_top">热门城市</div>
+			<div class="tit_top">热门地区</div>
 			<div class="tit_bottom">在美好的城市中相遇</div>	
 		</div>
 		<div class="srhc_intro">
 			<ul>
 				<li>
 					<img src="images/hot_city/shanghai.jpg" />
-					<a href="room_index.jsp" class="m_city">上海</a>
+					<a href="findHouse.jsp" class="m_city">西岗区</a>
 				</li>
 				<li>
 					<img src="images/hot_city/xian.jpg" />
-					<a href="room_index.jsp" class="m_city">西安</a>
+					<a href="findHouse.jsp" class="m_city">沙河口</a>
 				</li>
 				<li>
 					<img src="images/hot_city/guangzhou.jpg" />
-					<a href="room_index.jsp" class="m_city">广州</a>
+					<a href="findHouse.jsp" class="m_city">甘井子</a>
 				</li>
 				<li>
 					<img src="images/hot_city/shenzhen.jpg"/>
-					<a href="room_index.jsp" class="m_city">深圳</a>
+					<a href="findHouse.jsp" class="m_city">中山区</a>
 				</li>
 				<li>
 					<img src="images/hot_city/beijing.jpg" />
-					<a href="room_index.jsp" class="m_city">北京</a>
+					<a href="findHouse.jsp" class="m_city">金州区</a>
 				</li>
 				<li>
 					<img src="images/hot_city/xiamen.jpg" />
-					<a href="room_index.jsp" class="m_city">厦门</a>
+					<a href="findHouse.jsp" class="m_city">开发区</a>
 				</li>
 				<li>
 					<img src="images/hot_city/hangzhou.jpg" />
-					<a href="room_index.jsp" class="m_city">杭州</a>
+					<a href="findHouse.jsp" class="m_city">普兰店</a>
 				</li>
 				<li>
 					<img src="images/hot_city/sanya.jpg" />
-					<a href="room_index.jsp" class="m_city">三亚</a>
+					<a href="findHouse.jsp" class="m_city">瓦房店</a>
 				</li>
 			</ul>
 		</div>
@@ -198,46 +206,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="lrhr_intro">
 			<ul>
 				<li>
-					<a href="room_per.jsp"><img src="images/hot_room/01.jpg"/></a>
-					<a href="room_per.jsp"><p>宽窄巷子 人民公园天府广场</p></a>
-					<a href="room_per.jsp" class="a_css"><p class="p_css">4.4分</p></a>
-					<a href="room_per.jsp" class="a_css"><p class="p_css">23条评论</p></a>
-					<a href="room_per.jsp" class="a_css"><p class="p_css">可住5人</p></a>
+					<a href="details?id=1"><img src="images/hot_room/01.jpg"/></a>
+					<a href="details?id=1"><p>宽窄巷子 人民公园天府广场</p></a>
+					<a href="details.jsp" class="a_css"><p class="p_css">三室</p></a>
+					<a href="details.jsp" class="a_css"><p class="p_css">86平米</p></a>
+					<a href="details.jsp" class="a_css"><p class="p_css">3500/月</p></a>
 				</li>
 				<li>
-					<a href="room_per.jsp"><img src="images/hot_room/02.jpg"/></a>
-					<a href="room_per.jsp"><p>宽窄巷子 人民公园天府广场</p></a>
-					<a href="room_per.jsp" class="a_css"><p class="p_css">4.4分</p></a>
-					<a href="room_per.jsp" class="a_css"><p class="p_css">23条评论</p></a>
-					<a href="room_per.jsp" class="a_css"><p class="p_css">可住5人</p></a>
+					<a href="details.jsp"><img src="images/hot_room/01.jpg"/></a>
+					<a href="details.jsp"><p>宽窄巷子 人民公园天府广场</p></a>
+					<a href="details.jsp" class="a_css"><p class="p_css">三室</p></a>
+					<a href="details.jsp" class="a_css"><p class="p_css">86平米</p></a>
+					<a href="details.jsp" class="a_css"><p class="p_css">3500/月</p></a>
 				</li>
 				<li>
-					<a href="room_per.jsp"><img src="images/hot_room/03.jpg"/></a>
-					<a href="room_per.jsp"><p>宽窄巷子 人民公园天府广场</p></a>
-					<a href="room_per.jsp" class="a_css"><p class="p_css">4.4分</p></a>
-					<a href="room_per.jsp" class="a_css"><p class="p_css">23条评论</p></a>
-					<a href="room_per.jsp" class="a_css"><p class="p_css">可住5人</p></a>
+					<a href="details.jsp"><img src="images/hot_room/01.jpg"/></a>
+					<a href="details.jsp"><p>宽窄巷子 人民公园天府广场</p></a>
+					<a href="details.jsp" class="a_css"><p class="p_css">三室</p></a>
+					<a href="details.jsp" class="a_css"><p class="p_css">86平米</p></a>
+					<a href="details.jsp" class="a_css"><p class="p_css">3500/月</p></a>
 				</li>
 				<li>
-					<a href="room_per.jsp"><img src="images/hot_room/04.jpg"/></a>
-					<a href="room_per.jsp"><p>宽窄巷子 人民公园天府广场</p></a>
-					<a href="room_per.jsp" class="a_css"><p class="p_css">4.4分</p></a>
-					<a href="room_per.jsp" class="a_css"><p class="p_css">23条评论</p></a>
-					<a href="room_per.jsp" class="a_css"><p class="p_css">可住5人</p></a>
+					<a href="details.jsp"><img src="images/hot_room/01.jpg"/></a>
+					<a href="details.jsp"><p>宽窄巷子 人民公园天府广场</p></a>
+					<a href="details.jsp" class="a_css"><p class="p_css">三室</p></a>
+					<a href="details.jsp" class="a_css"><p class="p_css">86平米</p></a>
+					<a href="details.jsp" class="a_css"><p class="p_css">3500/月</p></a>
 				</li>
 				<li>
-					<a href="room_per.jsp"><img src="images/hot_room/05.jpg"/></a>
-					<a href="room_per.jsp"><p>宽窄巷子 人民公园天府广场</p></a>
-					<a href="room_per.jsp" class="a_css"><p class="p_css">4.4分</p></a>
-					<a href="room_per.jsp" class="a_css"><p class="p_css">23条评论</p></a>
-					<a href="room_per.jsp" class="a_css"><p class="p_css">可住5人</p></a>
+					<a href="details.jsp"><img src="images/hot_room/01.jpg"/></a>
+					<a href="details.jsp"><p>宽窄巷子 人民公园天府广场</p></a>
+					<a href="details.jsp" class="a_css"><p class="p_css">三室</p></a>
+					<a href="details.jsp" class="a_css"><p class="p_css">86平米</p></a>
+					<a href="details.jsp" class="a_css"><p class="p_css">3500/月</p></a>
 				</li>
 				<li>
-					<a href="room_per.jsp"><img src="images/hot_room/06.jpg"/></a>
-					<a href="room_per.jsp"><p>宽窄巷子 人民公园天府广场</p></a>
-					<a href="room_per.jsp" class="a_css"><p class="p_css">4.4分</p></a>
-					<a href="room_per.jsp" class="a_css"><p class="p_css">23条评论</p></a>
-					<a href="room_per.jsp" class="a_css"><p class="p_css">可住5人</p></a>
+					<a href="details.jsp"><img src="images/hot_room/01.jpg"/></a>
+					<a href="details.jsp"><p>宽窄巷子 人民公园天府广场</p></a>
+					<a href="details.jsp" class="a_css"><p class="p_css">三室</p></a>
+					<a href="details.jsp" class="a_css"><p class="p_css">86平米</p></a>
+					<a href="details.jsp" class="a_css"><p class="p_css">3500/月</p></a>
 				</li>
 			</ul>
 		</div>
@@ -249,12 +257,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--页面内容模块结束-->
 
 <!--页面尾部模块开始-->
-<div class="footer">
-	<<div class="partner"><span class="partner_friend">合作伙伴：</span><ul><li><a href="http://dl.xdf.cn" target="_blank">大连英语培训</a></li><li><a href="http://www.0759home.com" target="_blank">湛江购房网</a></li><li><a href="http://dalian.baixing.com" target="_blank">大连百姓网</a></li><li><a href="http://dl.ganji.com" target="_blank">大连赶集网</a></li><li><a href="http://www.jzhome.cn" target="_blank">锦州房产网</a></li><li><a href="http://oldhouse.fdc.com.cn" target="_blank">武汉二手房</a></li><li><a href="http://dl.city8.com" target="_blank">大连地图</a></li><li><a href="http://dl.58.com" target="_blank">大连分类信息</a></li><li><a href="http://www.jufengshang.com" target="_blank">世界名表</a></li><li><a href="http://www.dllp.cn/" target="_blank">精品楼盘网</a></li><li><a href="http://www.5sw.com/" target="_blank">五星写字楼网</a></li><li><a href="http://www.22bw.com/" target="_blank">农家乐</a></li><li><a href="http://sdfdc.com/" target="_blank">山东房地产</a></li><li><a href="http://www.baixingmall.com/" target="_blank">郑州建材</a></li><li><a href="http://piaojia.114piaowu.com/" target="_blank">火车票价查询</a></li><li><a href="http://dl.fccs.com/" target="_blank">大连房产网</a></li><li><a href="http://bj.fang.anjuke.com/loupan/daquan/" target="_blank">北京楼盘大全</a></li><li><a href="http://dl.goufang.com/" target="_blank">大连房产网</a></li><li><a href="http://bj.tuniu.com/" target="_blank">北京旅游网</a></li><li><a href="http://www.anjuke.com/baike/93791" target="_blank">房产证上加名字</a></li><li><a href="http://www.anjuke.com/zhinan/maifang" target="_blank">二手房交易流程</a></li><li><a href="http://yc.fccs.com/" target="_blank">银川房产超市网</a></li><li><a href="http://dalian.tianqi.com/" target="_blank">大连天气</a></li><li><a href="http://dalian.cncn.com/" target="_blank">大连旅游</a></li><li><a href="http://dalian.edeng.cn" target="_blank">大连易登网</a></li><li><a href="http://dalian.liebiao.com/" target="_blank">大连列表网</a></li><li><a href="http://dl.58.com/" target="_blank">大连58同城</a></li><li><a href="http://language.koolearn.com/" target="_blank">小语种学习</a></li><li><a href="http://dl.fang.anjuke.com/huxing/" target="_blank">大连户型大全</a></li><li><a href="http://www.bstzcs.com/ " target="_blank">农村房屋设计图</a></li><li><a href="http://dl.bendibao.com" target="_blank">大连本地宝</a></li><li><a href="http://y.liuxue86.com/" target="_blank">  网址导航</a></li><li><a href="http://www.liuxue86.com/rudangshenqingshu/" target="_blank">入党申请书</a></li><li><a href="http://suzhou.liebiao.com/" target="_blank">苏州二手房</a></li></ul></div>
+<div class="footer" style="padding-top:4px;">
+	<div class="partner"><li><span class="partner_friend">合作伙伴：</span></li><ul><li><a href="http://dl.xdf.cn" target="_blank">大连英语培训</a></li><li><a href="http://www.0759home.com" target="_blank">湛江购房网</a></li><li><a href="http://dalian.baixing.com" target="_blank">大连百姓网</a></li><li><a href="http://dl.ganji.com" target="_blank">大连赶集网</a></li><li><a href="http://www.jzhome.cn" target="_blank">锦州房产网</a></li><li><a href="http://oldhouse.fdc.com.cn" target="_blank">武汉二手房</a></li><li><a href="http://dl.city8.com" target="_blank">大连地图</a></li><li><a href="http://dl.58.com" target="_blank">大连分类信息</a></li><li><a href="http://www.jufengshang.com" target="_blank">世界名表</a></li><li><a href="http://www.dllp.cn/" target="_blank">精品楼盘网</a></li><li><a href="http://www.5sw.com/" target="_blank">五星写字楼网</a></li><li><a href="http://www.22bw.com/" target="_blank">农家乐</a></li><li><a href="http://sdfdc.com/" target="_blank">山东房地产</a></li><li><a href="http://www.baixingmall.com/" target="_blank">郑州建材</a></li><li><a href="http://piaojia.114piaowu.com/" target="_blank">火车票价查询</a></li><li><a href="http://dl.fccs.com/" target="_blank">大连房产网</a></li><li><a href="http://bj.fang.anjuke.com/loupan/daquan/" target="_blank">北京楼盘大全</a></li><li><a href="http://dl.goufang.com/" target="_blank">大连房产网</a></li><li><a href="http://bj.tuniu.com/" target="_blank">北京旅游网</a></li><li><a href="http://www.anjuke.com/baike/93791" target="_blank">房产证上加名字</a></li><li><a href="http://www.anjuke.com/zhinan/maifang" target="_blank">二手房交易流程</a></li><li><a href="http://yc.fccs.com/" target="_blank">银川房产超市网</a></li><li><a href="http://dalian.tianqi.com/" target="_blank">大连天气</a></li><li><a href="http://dalian.cncn.com/" target="_blank">大连旅游</a></li><li><a href="http://dalian.edeng.cn" target="_blank">大连易登网</a></li><li><a href="http://dalian.liebiao.com/" target="_blank">大连列表网</a></li><li><a href="http://dl.58.com/" target="_blank">大连58同城</a></li><li><a href="http://language.koolearn.com/" target="_blank">小语种学习</a></li><li><a href="http://dl.fang.anjuke.com/huxing/" target="_blank">大连户型大全</a></li><li><a href="http://www.bstzcs.com/ " target="_blank">农村房屋设计图</a></li><li><a href="http://dl.bendibao.com" target="_blank">大连本地宝</a></li><li><a href="http://y.liuxue86.com/" target="_blank">  网址导航</a></li><li><a href="http://www.liuxue86.com/rudangshenqingshu/" target="_blank">入党申请书</a></li><li><a href="http://suzhou.liebiao.com/" target="_blank">苏州二手房</a></li></ul></div>
 </div>
 <!--页面尾部模块结束-->
 
-<div id="topic" style="text-align:center;padding-top:16px;border-top:1px #E0E0E0 solid; color: #666">
+<div id="topic" style="text-align:center;padding-top:16px;border-top:1px #E0E0E0 solid; color: #666;float:left;padding-left:225px;">
     <span class="link_span"><a href="http://dalian.anjuke.com/help/question/1" rel="nofollow">关于安居客</a></span>|
     <span class="link_span"><a href="http://job.anjuke.com/" rel="nofollow">人才招聘</a></span>|
     <span class="link_span"><a href="http://dalian.anjuke.com/help/question/4" rel="nofollow">联系我们</a></span>|

@@ -36,7 +36,7 @@ public class RentHouseServiceImpl implements RentHouseService {
 	@Override
 	public RentHouse selectByPrimaryKey(Integer renthouseId) {
 		// TODO Auto-generated method stub
-		return null;
+		return rentHouseMapper.selectByPrimaryKey(renthouseId);
 	}
 
 	@Override
